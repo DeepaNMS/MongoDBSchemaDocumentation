@@ -1,0 +1,118 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Global CFM",
+    "version": "1.0",
+    "description": "Document for Global CFM objects. Converted from AsyncAPI."
+  },
+  "paths": {
+    "/AccountTechnician": {
+      "get": {
+        "summary": "Get AccountTechnician list",
+        "responses": {
+          "200": {
+            "description": "List of AccountTechnician",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/AccountTechnician" }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create AccountTechnician",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/AccountTechnician" }
+            }
+          }
+        },
+        "responses": {
+          "201": { "description": "Created" }
+        }
+      }
+    },
+    "/Address": {
+      "get": {
+        "summary": "Get Address list",
+        "responses": {
+          "200": {
+            "description": "List of Address",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/Address" }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create Address",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/Address" }
+            }
+          }
+        },
+        "responses": {
+          "201": { "description": "Created" }
+        }
+      }
+    }
+    // ...repeat for each schema (AddressIdentifier, AdditionalCost, etc.)...
+  },
+  "components": {
+    "schemas": {
+      "AccountTechnician": {
+        "title": "AccountTechnician",
+        "type": "object",
+        "additionalProperties": false,
+        "allOf": [
+          { "$ref": "#/components/schemas/User" }
+        ]
+      },
+      "Address": {
+        "title": "Address",
+        "type": "object",
+        "description": "Object containing information about Address",
+        "properties": {
+          "definedAtGeoCodeInfo": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/GeoCodeInfo" }
+          },
+          "definedAtPostalAddress": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/PostalAddress" }
+          },
+          "definedAtAddressIdentifier": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/AddressIdentifier" }
+          },
+          "isSpecificAddressKnown": { "type": "boolean" },
+          "street": { "type": "string" },
+          "number": { "type": "string" },
+          "addressLine2": { "type": "string" },
+          "zipCode": { "type": "string" },
+          "city": { "type": "string" },
+          "municipality": { "type": "string" },
+          "state": { "type": "string" },
+          "country": { "type": "string" },
+          "addressStatus": { "type": "string" }
+        },
+        "additionalProperties": false
+      }
+      // ...continue for all other schemas...
+    }
+  }
+}
